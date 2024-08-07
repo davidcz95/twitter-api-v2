@@ -13,7 +13,6 @@ import 'package:universal_io/io.dart';
 import '../config/retry_config.dart';
 import 'client.dart';
 import 'client_resolver.dart';
-import 'oauth1_client.dart';
 import 'oauth2_client.dart';
 import 'oauth_tokens.dart';
 import 'retry_policy.dart';
@@ -75,14 +74,6 @@ class _ClientContext implements ClientContext {
     required this.timeout,
     RetryConfig? retryConfig,
   })  : _clientResolver = ClientResolver(
-          oauthTokens != null
-              ? OAuth1Client(
-                  consumerKey: oauthTokens.consumerKey,
-                  consumerSecret: oauthTokens.consumerSecret,
-                  accessToken: oauthTokens.accessToken,
-                  accessTokenSecret: oauthTokens.accessTokenSecret,
-                )
-              : null,
           bearerToken.isNotEmpty
               ? OAuth2Client(bearerToken: bearerToken)
               : null,
